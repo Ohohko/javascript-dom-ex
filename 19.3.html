@@ -6,34 +6,86 @@
 content="width=device-width, initial-scale=1.0" />
 <title>Document</title>
 <script>
+const inputs =  document.querySelectorAll("input");
 
+inputs.forEach((input, index) => {
+    input.addEventListener('keyup', function(){
+        if(index !== inputs.length - 1)
+            this.nextElementSibling.focus();            
+    });
+});
 
-
-
-
+inputs[0].addEventListener('paste', (event) => {
+    let paste = event.clipboardData.getData('text');
+    paste.split("").forEach((digit, index) => {
+        inputs[index].value = digit;
+    });
+    inputs[inputs.length - 1].focus();
+});
 
 </script>
+<style>
+       .container {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+        } 
+
+        .container h1 {
+            padding-bottom: 0;
+            margin-bottom: 0;
+        } 
+        
+        .box {
+            border: 2px solid #9c0000;
+            height: 300px;
+            width: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .box .password {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .password input {
+            height: 60px;
+            width: 60px;
+            font-size: 40px;
+            text-align: center;
+        }
+
+        .box button {
+            display: block;
+            height: 50px;
+            width: 200px;
+            background-color: rgb(86, 75, 75);
+            color: white;
+            font-size: 25px;
+        }
+</style>
 </head>
 <body>
-<ul>
-<li>title 1</li>
-<li class="start-here">title 2</li>
-<li>
-<ul>
-<li>sub title 1</li>
-<li>sub title 2</li>
-<li>sub title 3</li>
-</ul>
-</li>
-<li>title 3</li>
-</ul>
-<div>
-<p>Hello World!</p>
-</div>
+    <div class="container">
+        <h1>Text to copy:</h1>
+        <h2></h2>
+        <div class="box">
+            <div class="password">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+                <input type="text" maxlength="1">
+            </div>
+            <button>Submit</button>
+        </div>
+    </div>
 </body>
 </html>
-
-
-
-
-
