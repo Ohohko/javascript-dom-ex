@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 20px;
+            
+        }
+
+        .hidden-letter {
+            border:lightgreen solid 2px;
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            margin: 20px;
+        }
+        button {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome To The Game - Guess My Letter!</h1>
+    <div class="hidden-letter">?</div>
+    <h2 class="msg">Guess a letter</h2>
+    <div class="guessed">Keys guessed:</div>
+    <div class="guessed-string"></div>
+    <button>Yes</button>
+    <script>
+        let randLetter = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+        console.log(randLetter);
+        let hiddenLetter = document.querySelector('.hidden-letter');
+        let msg = document.querySelector('.msg');
+        let guessed = document.querySelector('.guessed');
+        let guessedStrDiv = document.querySelector('.guessed-string');
+        let guessedStr = '';
+        let btn = document.querySelector('button');
+
+        document.querySelector('body').addEventListener('keyup', checkInput);
+
+        function checkInput() {
+            letter = event.key;
+            console.log(letter);
+            if (letter === randLetter) {
+                // change the letter in the box
+                hiddenLetter.innerText = `${randLetter}`;
+                // change the message
+                msg.innerText = 'Right letter!';
+                msg.style.color = 'green';
+                // change the guessed-letters-box
+                guessed.innerText = 'Would you like to play another game?';
+                // hide the guessed-letters-string
+                guessedStrDiv.style.display = 'none';
+                // display the button
+                btn.style.display = 'block';
+            } else {
+                // change the message
+                msg.innerText = 'Wrong letter!';
+                msg.style.color = 'red';
+                // display the guessed-letters-string
+                guessedStrDiv.style.display = 'block';
+                // add the letter to the str if wasn't before
+                if (!guessedStr.includes(letter)) {
+                    guessedStr = guessedStr.length >= 1 ? `${guessedStr}, ${letter}` : `${letter}`;
+                };
+console.log(guessedStr);
+                guessedStrDiv.innerText = guessedStr;
+                
+            }
+        }
+    </script>
+    
+</body>
+</html>
