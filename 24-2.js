@@ -16,30 +16,29 @@
 // following: “<pokemon name> used <attack method>”
 // Call each pokemon with the 2 methods you created.
 // Here is the Pokemon function:
-function Pokemon(pokemonName, pokemonType,
-pokemonAttackList){
-this.name = pokemonName;
-this.type = pokemonType;
-this.attackList = pokemonAttackList;
+
+
+
+
+function Pokemon(pokemonName, pokemonType, pokemonAttackList) {
+  this.name = pokemonName;
+  this.type = pokemonType;
+  this.attackList = pokemonAttackList;
 }
 
-Pokemon.prototype.callPokemon = function() {
-    console.log(`I choose you, ${this.name}`);
-  };
-  
-  Pokemon.prototype.attack = function(attackNumber) {
-    console.log(`${this.name} used ${this.attackList[attackNumber]}`);
-  };
-  
-  const Pikachu = new Pokemon('Pikachu', 'Electric', ['Thunder Shock', 'Quick Attack', 'Thunderbolt']);
-  const Charizard = new Pokemon('Charizard', 'Fire/Flying', ['Flamethrower', 'Dragon Claw', 'Wing Attack']);
-  const Mewtwo = new Pokemon('Mewtwo', 'Psychic', ['Psychic', 'Shadow Ball', 'Hyper Beam']);
-  
-  Pikachu.callPokemon();
-  Pikachu.attack(2);
-  
-  Charizard.callPokemon();
-  Charizard.attack(1);
-  
-  Mewtwo.callPokemon();
-  Mewtwo.attack(0);
+Pokemon.prototype.callPokemon = function () {
+  console.log(`i choose you, ${this.name}`)
+}
+
+Pokemon.prototype.attack = function () {
+  console.log(`${this.name} used ${this.attackList}`)
+}
+
+let pokemonA = new Pokemon('a', 'ninja', 'knife');
+let pokemonB = new Pokemon('b', 'pickachu', 'lightning');
+let pokemonC = new Pokemon('c', 'fire', 'fireballs');
+
+pokemonA.callPokemon();
+pokemonB.attack();
+pokemonB.callPokemon();
+pokemonC.attack();
