@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub User Search by ok</title>
+  </head>
+  <script>
+    async function searchUser() {
+      const username = document.getElementById("username").value;
+      const response = await fetch(`https://api.github.com/users/${username}`);
+      const user = await response.json();
+      document.getElementById("result").innerHTML = `
+    <h2>${user.name}</h2>
+    <img src="${user.avatar_url}" width="100">
+    <p>Username: ${user.login}</p>
+    <p>Name: ${user.name}</p>
+    <p>Location: ${user.location}</p>
+    <p>Bio: ${user.bio}</p>
+    <p>Email: ${user.email}</p>
+    <p>Number of repo: ${user.public_repos}</p>
+    <p>Date open git profile: ${user.created_at}<p>`;
+    }
+  </script>
+  <style>
+    html body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color:#6495ed;
+    }
+  </style>
+  <body>
+    <h1>GitHub User Search</h1>
+    <input type="text" id="username" />
+    <button onclick="searchUser()">Search</button>
+    <br /><br />
+    <div id="result"></div>
+  </body>
+</html>
